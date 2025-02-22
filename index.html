@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Navigo - Navigateur Web Éthique</title>
+  <style>
+    /* Réinitialisation et styles de base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #e0e5ec;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    /* En-tête avec dégradé et ombre */
+    header {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    header p {
+      font-size: 1.2rem;
+      opacity: 0.8;
+    }
+    /* Formulaire de saisie d'URL stylisé */
+    #urlForm {
+      margin: 1rem auto;
+      width: 90%;
+      max-width: 800px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: white;
+      padding: 0.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    #urlInput {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      outline: none;
+      transition: box-shadow 0.3s ease;
+    }
+    #urlInput:focus {
+      box-shadow: 0 0 5px rgba(102, 126, 234, 0.5);
+    }
+    #goButton {
+      margin-left: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border: none;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+    #goButton:hover {
+      background: linear-gradient(135deg, #764ba2, #667eea);
+      transform: translateY(-2px);
+    }
+    #goButton:active {
+      transform: translateY(0);
+    }
+    /* Conteneur de l'iframe pour une meilleure intégration */
+    #browserContainer {
+      flex: 1;
+      margin: 1rem;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    #browserFrame {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    /* Pied de page */
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #f4f4f4;
+      font-size: 0.9rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Navigo</h1>
+    <p>Navigateur Web Éthique</p>
+  </header>
+  
+  <div id="urlForm">
+    <input type="text" id="urlInput" placeholder="Entrez l'URL...">
+    <button id="goButton">Aller</button>
+  </div>
+  
+  <div id="browserContainer">
+    <iframe id="browserFrame" src=""></iframe>
+  </div>
+  
+  <footer>
+    &copy; 2025 Navigo. Conçu avec éthique et simplicité.
+  </footer>
+  
+  <script>
+    // Charge l'URL saisie dans l'iframe
+    document.getElementById('goButton').addEventListener('click', function() {
+      let url = document.getElementById('urlInput').value.trim();
+      if(url && !url.startsWith('http://') && !url.startsWith('https://')){
+        url = 'http://' + url;
+      }
+      document.getElementById('browserFrame').src = url;
+    });
+  
+    // Lancer la recherche avec la touche "Entrée"
+    document.getElementById('urlInput').addEventListener('keyup', function(event) {
+      if(event.key === 'Enter'){
+        document.getElementById('goButton').click();
+      }
+    });
+  </script>
+</body>
+</html>
