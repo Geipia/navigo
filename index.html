@@ -125,8 +125,9 @@
     // Charge l'URL saisie dans l'iframe
     document.getElementById('goButton').addEventListener('click', function() {
       let url = document.getElementById('urlInput').value.trim();
+      // Pour GitHub Pages, il est recommandé d'utiliser HTTPS
       if(url && !url.startsWith('http://') && !url.startsWith('https://')){
-        url = 'http://' + url;
+        url = 'https://' + url;
       }
       document.getElementById('browserFrame').src = url;
     });
